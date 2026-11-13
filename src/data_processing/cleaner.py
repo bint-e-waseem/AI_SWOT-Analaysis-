@@ -1,12 +1,12 @@
 import pandas as pd
 
 def clean_data(df):
-    print("🧹 Data cleaning shuru ho rahi hai...")
+    print("🧹 Data cleaning start...")
     
     # 1. Duplicate rows 
     initial_rows = df.shape[0]
     df = df.drop_duplicates()
-    print(f"   - Duplicate rows hataye gaye: {initial_rows - df.shape[0]}")
+    print(f"   - Duplicate rows : {initial_rows - df.shape[0]}")
 
     # 2. Missing values 
     numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns
@@ -20,16 +20,16 @@ def clean_data(df):
         if 'date' in col.lower():
             try:
                 df[col] = pd.to_datetime(df[col])
-                print(f"   - '{col}' column ko Date format mein convert kar diya gaya.")
+                print(f"   - '{col}' column  Date format  convert.")
             except:
-                print(f"   - '{col}' column ko Date format mein convert nahi kiya ja saka.")
+                print(f"   - '{col}' column  Date format donot convert")
 
-    print("✅ Data cleaning mukammal ho gayi!")
+    print("✅ Data cleaning compete!")
     return df
 
 # Test 
 if __name__ == "__main__":
-    print("Raw data load ho raha hai...")
+    print("Raw data load ...")
     df = pd.read_csv("data/raw/SuperMarket Analysis.csv")
     
     # Data clean 
